@@ -11,7 +11,6 @@ exports.deleteOne = (Model) =>
     if (deletedDocument) {
       if (Model.modelName === 'review') {
         const productId = deletedDocument.product;
-        console.log(Model)
         // Recalculate average ratings and quantity for the product
         await Model.calcAverageRatingsAndQuantity(productId);
       }
