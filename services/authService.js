@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const ApiError = require("../utils/apiError");
 const sendEmail = require("../utils/sendEmail");
 const createToken = require("../utils/createToken")
+const {sanitizeUser} = require("../utils/sanitizeData")
 const User = require("../models/userModel");
 
 
@@ -21,10 +22,11 @@ exports.signup = asyncHandler(async (req, res, next) => {
     email,
     password,
   });
+  console.log("🚀======>>>>", user)
   // 2-Generate token
   const token = createToken(user._id);
 
-  res.status(201).json({ data: user, token });
+  res.status(201).json({ data: sanitizeUser(user), token });
 });
 
 // @desc     login
