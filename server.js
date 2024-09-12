@@ -9,7 +9,8 @@ const hpp = require("hpp");
 const mongoSanitize = require('express-mongo-sanitize');
 const { xss } = require('express-xss-sanitizer');
 
-dotenv.config({ path: "config.env" });
+// dotenv.config({ path: "config.env" });
+dotenv.config({ path: ".env" });
 const dbConnect = require("./config/dbConnect");
 const ApiError = require("./utils/apiError");
 const globalError = require("./middlewares/globalErrorMiddleware");
