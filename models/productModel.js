@@ -90,28 +90,28 @@ productSchema.pre(/^find/, function (next) {
   next();
 });
 
-const imageUrlPerfix = (type) => {
-  productSchema.post(type, (doc) => {
-    // return set image base url + image name
-    if (doc.imageCover) {
-      const imageURL = `${process.env.BASE_URL}/products/${doc.imageCover}`;
-      doc.imageCover = imageURL;
-    }
-    if (doc.images) {
-      const imagesList = [];
-      doc.images.forEach((image) => {
-        const imageUrl = `${process.env.BASE_URL}/products/${image}`;
-        imagesList.push(imageUrl);
-      });
-      doc.images = imagesList;
-    }
-  });
-};
+// const imageUrlPerfix = (type) => {
+//   productSchema.post(type, (doc) => {
+//     // return set image base url + image name
+//     if (doc.imageCover) {
+//       const imageURL = `${process.env.BASE_URL}/products/${doc.imageCover}`;
+//       doc.imageCover = imageURL;
+//     }
+//     if (doc.images) {
+//       const imagesList = [];
+//       doc.images.forEach((image) => {
+//         const imageUrl = `${process.env.BASE_URL}/products/${image}`;
+//         imagesList.push(imageUrl);
+//       });
+//       doc.images = imagesList;
+//     }
+//   });
+// };
 
 // findOne, findAll and update
-imageUrlPerfix("init");
+// imageUrlPerfix("init");
 
 // create
-imageUrlPerfix("save");
+// imageUrlPerfix("save");
 
 module.exports = mongoose.model("product", productSchema);

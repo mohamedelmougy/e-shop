@@ -19,6 +19,7 @@ const {
 
 const subCategoriesRoute = require("./subCategoryRoute");
 const authService = require("../services/authService");
+const { uploadToFirebase } = require("../middlewares/uploadImageMiddleware");
 
 const router = express.Router();
 // nested route
@@ -31,7 +32,8 @@ router
     authService.protect,
     authService.allowedTo("admin", "manager"),
     uploadCategoryImage,
-    resizeImage,
+    // resizeImage,
+    uploadToFirebase,
     createCategoryValidator,
     createCategory
   );

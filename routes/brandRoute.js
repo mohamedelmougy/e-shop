@@ -15,8 +15,10 @@ const {
   deleteBrand,
   uploadBrandImage,
   resizeImage,
+  
 } = require("../services/brandService");
 const authService = require("../services/authService");
+const { uploadToFirebase } = require("../middlewares/uploadImageMiddleware");
 
 const router = express.Router();
 
@@ -27,7 +29,8 @@ router
     authService.protect,
     authService.allowedTo("admin", "manager"),
     uploadBrandImage,
-    resizeImage,
+    // resizeImage,
+    uploadToFirebase,
     createBrandValidator,
     createBrand
   );

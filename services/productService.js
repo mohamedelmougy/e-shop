@@ -27,34 +27,34 @@ exports.resizeProductImages = asyncHandler(async (req, res, next) => {
     await sharp(req.files.imageCover[0].buffer)
       .resize(1200, 1333)
       .toFormat("jpeg")
-      .jpeg({ quality: 95 })
-      .toFile(`uploads/products/${imageCoverfilename}`);
+      // .jpeg({ quality: 95 })
+      // .toFile(`uploads/products/${imageCoverfilename}`);
 
     // save image into our db
     req.body.imageCover = imageCoverfilename;
   }
-
+next()
   // 2- Image processing for images
-  if (req.files.images) {
-    req.body.images = [];
+  // if (req.files.images) {
+  //   req.body.images = [];
 
-    await Promise.all(
-      req.files.images.map(async (img, index) => {
-        const imageName = `product-${uuidv4()}-${Date.now()}-${index + 1}.jpeg`;
+  //   await Promise.all(
+  //     req.files.images.map(async (img, index) => {
+  //       const imageName = `product-${uuidv4()}-${Date.now()}-${index + 1}.jpeg`;
 
-        await sharp(img.buffer)
-          .resize(1200, 1333)
-          .toFormat("jpeg")
-          .jpeg({ quality: 95 })
-          .toFile(`uploads/products/${imageName}`);
+  //       await sharp(img.buffer)
+  //         .resize(1200, 1333)
+  //         .toFormat("jpeg")
+  //         .jpeg({ quality: 95 })
+  //         // .toFile(`uploads/products/${imageName}`);
 
-        // save image into our db
-        req.body.images.push(imageName);
-      })
-    );
+  //       // save image into our db
+  //       req.body.images.push(imageName);
+  //     })
+  //   );
 
-  }
-  next();
+  // }
+  // next();
 });
 
 // @desc     get list of products

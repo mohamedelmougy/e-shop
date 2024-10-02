@@ -12,17 +12,21 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
+  
   uploadProductImages,
   resizeProductImages,
 } = require("../services/productService");
 const reviewsRoute = require("./reviewRoute")
 const authService = require("../services/authService");
+const { uploadToFirebase, uploadMultipleImagesToFirebase, uploadMixOfImages } = require("../middlewares/uploadImageMiddleware");
 
 const router = express.Router();
 // POST     /product/fd54gj5unkyg5/reviews
 // GET      /product/fd54gj5unkyg5/reviews
 // GET      /product/fd54gj5unkyg5/reviews/d5ghtjhn5gj55jrn
 router.use("/:productId/reviews", reviewsRoute);
+
+
 
 router
   .route("/")
@@ -31,7 +35,8 @@ router
     authService.protect,
     authService.allowedTo("admin", "manager"),
     uploadProductImages,
-    resizeProductImages,
+    // resizeProductImages,
+    uploadMultipleImagesToFirebase,
     createProductValidator,
     createProduct
   );

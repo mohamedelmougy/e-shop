@@ -18,21 +18,21 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const imageUrlPerfix =(type)=>{
-  categorySchema.post(type,  (doc)=> {
-    // return set image base url + image name
-    if (doc.image) {
-      const imageURL = `${process.env.BASE_URL}/categories/${doc.image}`;
-      doc.image = imageURL
-    }
-  });
-}
+// const imageUrlPerfix =(type)=>{
+//   categorySchema.post(type,  (doc)=> {
+//     // return set image base url + image name
+//     if (doc.image) {
+//       const imageURL = `${process.env.BASE_URL}/categories/${doc.image}`;
+//       doc.image = imageURL
+//     }
+//   });
+// }
 
 // findOne, findAll and update
-imageUrlPerfix("init")
+// imageUrlPerfix("init")
 
 // create
-imageUrlPerfix("save")
+// imageUrlPerfix("save")
 
 
 
