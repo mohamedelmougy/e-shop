@@ -47,7 +47,8 @@ router
     authService.protect,
     authService.allowedTo("admin", "manager"),
     uploadProductImages,
-    resizeProductImages,
+    // resizeProductImages,
+    uploadMultipleImagesToFirebase,
     updateProductValidator,
     updateProduct
   )

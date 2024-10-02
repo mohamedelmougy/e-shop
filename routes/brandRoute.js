@@ -42,7 +42,8 @@ router
     authService.protect,
     authService.allowedTo("admin", "manager"),
     uploadBrandImage,
-    resizeImage,
+    // resizeImage,
+    uploadToFirebase,
     updateBrandValidator,
     updateBrand
   )

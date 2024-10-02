@@ -44,7 +44,8 @@ router
     authService.protect,
     authService.allowedTo("admin", "manager"),
     uploadCategoryImage,
-    resizeImage,
+    // resizeImage,
+    uploadToFirebase,
     updateCategoryValidator,
     updateCategory
   )
