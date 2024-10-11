@@ -10,7 +10,7 @@ class ApiFeatures {
     excludesFields.forEach((field) => delete queryingObj[field]);
     // Apply filteration using [gte, gt, lte, lt]
     let query = JSON.stringify({ ...queryingObj });
-    query = query.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    query = query.replace(/\b(gte|gt|lte|lt|in)\b/g, (match) => `$${match}`);
 
     this.mongooseQuery = this.mongooseQuery.find(JSON.parse(query));
 
@@ -71,7 +71,7 @@ class ApiFeatures {
     // pagination result
     const pagination = {};
     pagination.currentPage = page;
-    pagination.numberOfPage = Math.ceil(countDocuments / limit);
+    pagination.numberOfPages = Math.ceil(countDocuments / limit);
     if (endIndex < countDocuments) {
       pagination.next = page + 1;
     }
